@@ -14,6 +14,7 @@ RUN			apt-get update; \
 RUN			mkdir /conf; \
 			mkdir /ftp; \
 			mkdir /samples; \
+			mkdir /log; \
 			addgroup --system nsgroup --gid=10000; \
 			adduser --system nsuser --uid=10000 --gid=10000
 
