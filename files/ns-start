@@ -7,8 +7,14 @@ if [ ! -f /conf/proftpd.conf ];then
 
 fi
 
+if [ ! -f /conf/ftpd.passwd ];then
+	touch /conf/ftpd.passwd
 
+fi
 
+if [ ! -f /conf/ftpd.group ];then
+	touch /conf/ftpd.group
 
+fi
 
 exec /usr/sbin/proftpd -n -c /conf/proftpd.conf
