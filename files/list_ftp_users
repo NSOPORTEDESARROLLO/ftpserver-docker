@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+
+echo "Usuarios disponibles:"
+echo ""
+
+
+for i in $(cat /conf/ftpd.passwd |cut -d ":" -f 1);do
+
+        echo "               * $i"
+
+done
+
+
+
+        echo ""
+        echo ""
+
+
+exit 0
+
+

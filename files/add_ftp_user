@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Insertar el nombre de usuario:"
+read user
+
+
+if [ "$user" = "" ];then
+        echo "ERROR: Necesita insrtar un nombre de usuario"
+        exit 1
+fi
+
+
+
+/usr/sbin/ftpasswd --passwd --file=/conf/ftpd.passwd --name=$user --uid=10000 --gid=10000 --home=/ftp --shell=/bin/false
+
+
+
+exit 0

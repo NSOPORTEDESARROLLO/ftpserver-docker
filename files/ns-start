@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+
+if [ ! -f /conf/proftpd.conf ];then
+	cp -fv /samples/proftpd.conf /conf/
+
+fi
+
+
+
+
+
+exec /usr/sbin/proftpd -n -c /conf/proftpd.conf

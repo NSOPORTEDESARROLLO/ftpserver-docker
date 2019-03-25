@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+
+echo "Usuarios disponibles:"
+echo ""
+
+
+for i in $(cat /conf/ftpd.passwd |cut -d ":" -f 1);do
+
+        echo "               * $i"
+
+done
+
+
+echo ""
+echo ""
+echo "Digite el nombre de usuario a eliminar:"
+read user
+
+if [ "$user" = "" ];then
+        echo "Error: Debe digitar el nombre de usuario"
+        exit 1
+fi
+
+
+/usr/sbin/ftpasswd --passwd --file=/conf/ftpd.passwd --name=$user --delete-user
+
+
+
+exit 0
