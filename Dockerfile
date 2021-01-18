@@ -1,4 +1,4 @@
-FROM		debian:stretch
+FROM		debian:stretch-slim
 MAINTAINER	cnaranjo@nsoporte.com
 
 
@@ -14,9 +14,8 @@ RUN			apt-get update; \
 RUN			mkdir /conf; \
 			mkdir /ftp; \
 			mkdir /samples; \
-			mkdir /log; \
-			addgroup --system nsgroup --gid=10000; \
-			adduser --system nsuser --uid=10000 --gid=10000
+			mkdir /log
+			
 
 
 
@@ -35,8 +34,8 @@ COPY		files/list_ftp_users /usr/bin/
 RUN			chmod +x /usr/bin/ns-start; \
 			chmod +x /usr/bin/add_ftp_user; \
 			chmod +x /usr/bin/del_ftp_user; \
-			chmod +x /usr/bin/list_ftp_users; \
-			chown -R nsuser.nsgroup /ftp
+			chmod +x /usr/bin/list_ftp_users
+			
 
 
 EXPOSE      21

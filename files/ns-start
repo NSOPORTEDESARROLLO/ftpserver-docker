@@ -1,6 +1,27 @@
 #!/bin/bash
 
 
+#Reviso las variable de entorno
+if [ "$uid" = "" ];then 
+
+	uid=10000
+	
+
+fi
+
+if [ "$gid" = "" ];then
+
+	gid=10000
+	
+
+fi
+
+#Cargo las variables de entorno
+echo "uid=$uid" > /etc/environment
+echo "gid=$gid" >> /etc/environment
+source /etc/environment
+
+
 #Creando Archivos si no existen
 if [ ! -f /conf/proftpd.conf ];then
 	cp -fv /samples/proftpd.conf /conf/
@@ -17,6 +38,19 @@ if [ ! -f /conf/ftpd.group ];then
 
 fi
 
+
+#Revisar la creacion del usuario por defecto
+usercheck=$(cat /etc/passwd |grep ^nsuser)
+
+
+if [ "$usercheck" = "" ];then 
+
+
+	addgroup --system nsgroup --gid=$gid
+	adduser --system nsuser --uid=$uid --gid=$gid
+	chown -R nsuser.nsgroup /ftp
+
+fi
 
 #Reparando Permisos:
 /bin/chmod -R 700 /conf/*
